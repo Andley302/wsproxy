@@ -12,7 +12,7 @@ except:
 BUFLEN = 4096 * 4
 TIMEOUT = 60
 DEFAULT_HOST = "127.0.0.1:22"
-RESPONSE = 'HTTP/1.1 101 OneVPS \r\n\r\n'
+RESPONSE = 'HTTP/1.1 101 Switching Protocols \r\n\r\n'
  
 class Server(threading.Thread):
     def __init__(self, host, port):
@@ -250,7 +250,7 @@ def main(host=LISTENING_ADDR, port=LISTENING_PORT):
     print "\033[0;34m━"*8,"\033[1;32m PROXY WEBSOCKET","\033[0;34m━"*8,"\n"
     print "\033[1;33mIP:\033[1;32m " + LISTENING_ADDR
     print "\033[1;33mPORTA:\033[1;32m " + str(LISTENING_PORT) + "\n"
-    print "\033[0;34m━"*10,"\033[1;32m SSHPLUS","\033[0;34m━\033[1;37m"*11,"\n"
+    print "\033[0;34m━"*10,"\033[1;32m ONEVPS","\033[0;34m━\033[1;37m"*11,"\n"
     
     
     server = Server(LISTENING_ADDR, LISTENING_PORT)
