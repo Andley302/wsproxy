@@ -14,7 +14,7 @@ else
   cd /etc/CrashVPN;
   rm -rf wsproxy.py
   wget https://raw.githubusercontent.com/Andley302/wsproxy/main/wsproxy.py;
-  echo -e "netstat -tlpn | grep -w 80 > /dev/null || {  screen -r -S 'wsproxy' -X quit;  screen -dmS wsproxy python /etc/SSHPlus/wsproxy.py 80; }" >>/etc/autostart;
-  netstat -tlpn | grep -w 80 > /dev/null || {  screen -r -S 'wspy' -X quit;  screen -dmS wspy python /etc/SSHPlus/wsproxy.py 80; };
+  echo -e "netstat -tlpn | grep -w 80 > /dev/null || {  screen -r -S 'wsproxy' -X quit;  screen -dmS wsproxy python /etc/CrashVPN/wsproxy.py 80; }" >>/etc/autostart;
+  netstat -tlpn | grep -w 80 > /dev/null || {  screen -r -S 'wspy' -X quit;  screen -dmS wspy python /etc/CrashVPN/wsproxy.py 80; };
 fi
 
