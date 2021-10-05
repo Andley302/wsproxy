@@ -14,8 +14,6 @@ BUFLEN = 4096 * 10
 TIMEOUT = 5
 DEFAULT_HOST = '127.0.0.1:22'
 RESPONSE = 'HTTP/1.1 101 Switching Protocols \r\n\r\n'
-#RESPONSE = 'HTTP/1.1 101 \r\n\r\n'
-#RESPONSE = 'HTTP/1.1 101 Hello_World!\r\nContent-length: 0\r\n\r\nHTTP/1.1 200 Connection established\r\n\r\n'  # lint:ok
 
 class Server(threading.Thread):
     def __init__(self, host, port):
