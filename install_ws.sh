@@ -3,9 +3,9 @@ apt update && apt install wget -y;
 wget https://raw.githubusercontent.com/Andley302/utils/main/antcrashws.sh -O /bin/antcrashws.sh > /dev/null 2>&1
 chmod +x /bin/antcrashws.sh;
 wget https://raw.githubusercontent.com/Andley302/utils/main/antcrashsockssquid.sh -O /bin/antcrashsockssquid.sh > /dev/null 2>&1
-chmod +x /bin/antcrashsockssquid;
+chmod +x /bin/antcrashsockssquid.sh;
 wget https://raw.githubusercontent.com/Andley302/utils/main/antcrashsocksdirect.sh -O /bin/antcrashsocksdirect.sh > /dev/null 2>&1
-chmod +x /bin/antcrashsocksdirect;
+chmod +x /bin/antcrashsocksdirect.sh;
 echo -e "INSTALADOR SOCKS PROXY"
 DIR="/etc/SSHPlus"
 if [ -d "$DIR" ]; then
