@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 # Edit By @OneVPS
-import socket, threading, thread, select, signal, sys, time
+import socket, threading, thread, select, signal, sys, time , random
 from os import system
+
 system("clear")
 #conexao
 IP = '0.0.0.0'
@@ -11,9 +12,10 @@ try:
 except:
    PORT = 80
 PASS = ''
-BUFLEN = 16392 * 16
+#BUFLEN = 16392 * 16
+BUFLEN = 8196 * 8
 TIMEOUT = 60
-DEFAULT_HOST = '0.0.0.0:22'
+DEFAULT_SSH_PORT = '0.0.0.0:22'
 RESPONSE = 'HTTP/1.1 101 Switching Protocols \r\n\r\n'
  
 class Server(threading.Thread):
@@ -115,9 +117,29 @@ class ConnectionHandler(threading.Thread):
             self.client_buffer = self.client.recv(BUFLEN)
         
             hostPort = self.findHeader(self.client_buffer, 'X-Real-Host')
+           
             
             if hostPort == '':
-                hostPort = DEFAULT_HOST
+            
+                # generate some integers
+                value = int(random.randint(29,50))   
+                if (value == 29):
+                    #hostPort = DEFAULT_SSH_PORT    
+                     hostPort = '0.0.0.0:22'                     
+                elif (value == 30):
+                     hostPort = '0.0.0.0:30'          
+                elif (value == 31):
+                     hostPort = '0.0.0.0:31' 
+                elif (value == 32): 
+                     hostPort = '0.0.0.0:32' 
+                elif (value == 33): 
+                     hostPort = '0.0.0.0:33' 
+                elif (value == 34): 
+                     hostPort = '0.0.0.0:34' 
+                elif (value == 35): 
+                     hostPort = '0.0.0.0:35' 
+                else :   
+                     hostPort = '0.0.0.0:36'         
 
             split = self.findHeader(self.client_buffer, 'X-Split')
 
