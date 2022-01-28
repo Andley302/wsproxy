@@ -13,7 +13,7 @@ PASS = ''
 BUFLEN = 4096 * 10
 TIMEOUT = 5
 DEFAULT_HOST = '127.0.0.1:22'
-RESPONSE = 'HTTP/1.1 101 Update domain \r\n\r\n'
+RESPONSE = 'HTTP/1.1 101 Switching Protocols \r\n\r\n'
 
 class Server(threading.Thread):
     def __init__(self, host, port):
