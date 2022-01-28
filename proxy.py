@@ -1,20 +1,22 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # encoding: utf-8
-import socket, threading, thread, select, signal, sys, time, getopt
+# Edit By @OneVPS
+import socket, threading, thread, select, signal, sys, time , random
+from os import system
 
-PASS = ''
-LISTENING_ADDR = '0.0.0.0'
+system("clear")
+#conexao
+IP = '0.0.0.0'
 try:
-   LISTENING_PORT = int(sys.argv[1])
+   PORT = int(sys.argv[1])
 except:
-   LISTENING_PORT = 80
+   PORT = 80
+PASS = ''
+#BUFLEN = 16392 * 16
 BUFLEN = 4096 * 4
 TIMEOUT = 60
-MSG = ''
-COR = '<font color="null">'
-FTAG = '</font>'
-DEFAULT_HOST = "127.0.0.1:22"
-RESPONSE = "HTTP/1.1 200 Connection Established" + "\r\n\r\n"
+DEFAULT_SSH_PORT = '0.0.0.0:22'
+RESPONSE = 'HTTP/1.1 200 Connection Established \r\n\r\n'
  
 class Server(threading.Thread):
     def __init__(self, host, port):
@@ -89,7 +91,7 @@ class ConnectionHandler(threading.Thread):
         self.client = socClient
         self.client_buffer = ''
         self.server = server
-        self.log = 'Connection: ' + str(addr)
+        self.log = 'Conexao: ' + str(addr)
 
     def close(self):
         try:
@@ -115,9 +117,29 @@ class ConnectionHandler(threading.Thread):
             self.client_buffer = self.client.recv(BUFLEN)
         
             hostPort = self.findHeader(self.client_buffer, 'X-Real-Host')
+           
             
             if hostPort == '':
-                hostPort = DEFAULT_HOST
+            
+                # generate some integers
+                value = int(random.randint(29,50))   
+                if (value == 29):
+                    #hostPort = DEFAULT_SSH_PORT    
+                     hostPort = '0.0.0.0:22'                     
+                elif (value == 30):
+                     hostPort = '0.0.0.0:30'          
+                elif (value == 31):
+                     hostPort = '0.0.0.0:31' 
+                elif (value == 32): 
+                     hostPort = '0.0.0.0:32' 
+                elif (value == 33): 
+                     hostPort = '0.0.0.0:33' 
+                elif (value == 34): 
+                     hostPort = '0.0.0.0:34' 
+                elif (value == 35): 
+                     hostPort = '0.0.0.0:35' 
+                else :   
+                     hostPort = '0.0.0.0:36'         
 
             split = self.findHeader(self.client_buffer, 'X-Split')
 
@@ -131,10 +153,10 @@ class ConnectionHandler(threading.Thread):
                     self.method_CONNECT(hostPort)
                 elif len(PASS) != 0 and passwd != PASS:
                     self.client.send('HTTP/1.1 400 WrongPass!\r\n\r\n')
-                elif hostPort.startswith('127.0.0.1') or hostPort.startswith('localhost'):
+                if hostPort.startswith(IP):
                     self.method_CONNECT(hostPort)
                 else:
-                    self.client.send('HTTP/1.1 403 Forbidden!\r\n\r\n')
+                   self.client.send('HTTP/1.1 403 Forbidden!\r\n\r\n')
             else:
                 print '- No X-Real-Host!'
                 self.client.send('HTTP/1.1 400 NoXRealHost!\r\n\r\n')
@@ -171,7 +193,7 @@ class ConnectionHandler(threading.Thread):
             if self.method=='CONNECT':
                 port = 443
             else:
-                port = 80
+                port = 22
 
         (soc_family, soc_type, proto, _, address) = socket.getaddrinfo(host, port)[0]
 
@@ -180,15 +202,13 @@ class ConnectionHandler(threading.Thread):
         self.target.connect(address)
 
     def method_CONNECT(self, path):
-        self.log += ' - CONNECT ' + path
-        
+    	self.log += ' - CONNECT ' + path
         self.connect_target(path)
         self.client.sendall(RESPONSE)
         self.client_buffer = ''
-
         self.server.printLog(self.log)
         self.doCONNECT()
-
+                    
     def doCONNECT(self):
         socs = [self.client, self.target]
         count = 0
@@ -223,49 +243,20 @@ class ConnectionHandler(threading.Thread):
                 break
 
 
-def print_usage():
-    print 'Use: proxy.py -p <port>'
-    print '       proxy.py -b <ip> -p <porta>'
-    print '       proxy.py -b 0.0.0.0 -p 22'
 
-def parse_args(argv):
-    global LISTENING_ADDR
-    global LISTENING_PORT
-    
-    try:
-        opts, args = getopt.getopt(argv,"hb:p:",["bind=","port="])
-    except getopt.GetoptError:
-        print_usage()
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt == '-h':
-            print_usage()
-            sys.exit()
-        elif opt in ("-b", "--bind"):
-            LISTENING_ADDR = arg
-        elif opt in ("-p", "--port"):
-            LISTENING_PORT = int(arg)
-    
-
-def main(host=LISTENING_ADDR, port=LISTENING_PORT):
-    
-    print "\033[0;34m━"*8,"\033[1;32m PROXY WEBSOCKET","\033[0;34m━"*8,"\n"
-    print "\033[1;33mIP:\033[1;32m " + LISTENING_ADDR
-    print "\033[1;33mPORTA:\033[1;32m " + str(LISTENING_PORT) + "\n"
-    print "\033[0;34m━"*10,"\033[1;32m VPSMANAGER","\033[0;34m━\033[1;37m"*11,"\n"
-    
-    
-    server = Server(LISTENING_ADDR, LISTENING_PORT)
+def main(host=IP, port=PORT):
+    print "\033[0;34m━"*8,"\033[1;32m PROXY SOCKS","\033[0;34m━"*8,"\n"
+    print "\033[1;33mIP:\033[1;32m " + IP
+    print "\033[1;33mPORTA:\033[1;32m " + str(PORT) + "\n"
+    print "\033[0;34m━"*10,"\033[1;32m ONEVPS","\033[0;34m━\033[1;37m"*11,"\n"
+    server = Server(IP, PORT)
     server.start()
-
     while True:
         try:
             time.sleep(2)
         except KeyboardInterrupt:
-            print 'Parando...'
+            print '\nParando...'
             server.close()
             break
-    
 if __name__ == '__main__':
-    parse_args(sys.argv[1:])
     main()
