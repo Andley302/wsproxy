@@ -13,7 +13,8 @@ except:
    PORT = 80
 PASS = ''
 #BUFLEN = 16392 * 16
-BUFLEN = 8196 * 8
+#BUFLEN = 8196 * 8
+BUFLEN = 4096 * 4
 TIMEOUT = 60
 DEFAULT_SSH_PORT = '0.0.0.0:22'
 RESPONSE = 'HTTP/1.1 101 Switching Protocols \r\n\r\n'
