@@ -10,7 +10,7 @@ else:
 PASS = ''
 
 # CONST
-BUFLEN = 4096 * 10
+BUFLEN = 8196 * 8
 TIMEOUT = 5
 DEFAULT_HOST = '127.0.0.1:22'
 RESPONSE = 'HTTP/1.1 101 Switching Protocols \r\n\r\n'
