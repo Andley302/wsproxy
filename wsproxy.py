@@ -11,13 +11,10 @@ try:
 except:
    PORT = 80
 PASS = ''
-BUFLEN = 8196 * 8
+BUFLEN = 16392 * 16
 TIMEOUT = 60
-MSG = 'oOneVPS'
-COR = '<font color="null">'
-FTAG = '</font>'
 DEFAULT_HOST = '0.0.0.0:22'
-RESPONSE = "HTTP/1.1 101 Switching Protocols \r\n\r\n"
+RESPONSE = 'HTTP/1.1 101 Switching Protocols \r\n\r\n'
  
 class Server(threading.Thread):
     def __init__(self, host, port):
