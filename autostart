@@ -9,4 +9,4 @@ netstat -tlpn | grep -w 2082 > /dev/null || screen -dmS wsproxy2082 antcrashws.s
 netstat -tlpn | grep -w 2086 > /dev/null || screen -dmS wsproxy2086 antcrashws.sh 2086
 netstat -tlpn | grep -w 2095 > /dev/null || screen -dmS wsproxy2095 antcrashws.sh 2095
 netstat -tlpn | grep -w 8088 > /dev/null || screen -dmS socks_squid antcrashsockssquid.sh 8088
-ps x | grep 'udpvpn' | grep -v 'grep' || screen -dmS udpvpn antcrashudp.sh
+#ps x | grep 'udpvpn' | grep -v 'grep' || screen -dmS udpvpn antcrashudp.sh
