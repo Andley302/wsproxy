@@ -8,6 +8,7 @@ wget https://raw.githubusercontent.com/Andley302/utils/main/antcrashsocksdirect.
 chmod +x /bin/antcrashsocksdirect.sh;
 echo -e "INSTALADOR SOCKS PROXY"
 cd /etc && rm -rf autostart && wget https://raw.githubusercontent.com/Andley302/wsproxy/main/autostart;
+chmod +x autostart;
 if [ -d "$DIR" ]; then
   # Take action if $DIR exists. #
   echo "Installing config files in ${DIR}..."
