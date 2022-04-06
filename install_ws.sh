@@ -9,9 +9,9 @@ chmod +x /bin/antcrashsocksdirect.sh;
 echo -e "INSTALADOR SOCKS PROXY"
 cd /etc && rm -rf autostart && wget https://raw.githubusercontent.com/Andley302/wsproxy/main/autostart;
 chmod +x autostart;
-if [ -d "$DIR" ]; then
+#if [ -d "$DIR" ]; then
   # Take action if $DIR exists. #
-  echo "Installing config files in ${DIR}..."
+  echo "Installing config files in /etc/SSHPlus..."
   cd /etc/SSHPlus;
   rm -rf wsproxy.py
   rm -rf proxy.py
@@ -43,12 +43,12 @@ if [ -d "$DIR" ]; then
   #netstat -tlpn | grep -w 8080 > /dev/null || {  screen -r -S 'socks_direct' -X quit;  screen -dmS socks_direct python /etc/SSHPlus/wsproxy.py 8080; };
  # echo -e "netstat -tlpn | grep -w 8088 > /dev/null || screen -dmS socks_squid antcrashsockssquid.sh 8088" >>/etc/autostart;
  # netstat -tlpn | grep -w 8088 > /dev/null || {  screen -r -S 'socks_squid' -X quit;  screen -dmS socks_squid python /etc/SSHPlus/wsproxy.py 8088; };
-else
-  cd /etc/CrashVPN;
-  rm -rf wsproxy.py
-  wget https://raw.githubusercontent.com/Andley302/wsproxy/main/wsproxy.py;
+#else
+ # cd /etc/CrashVPN;
+ # rm -rf wsproxy.py
+ # wget https://raw.githubusercontent.com/Andley302/wsproxy/main/wsproxy.py;
   #echo -e "netstat -tlpn | grep -w 80 > /dev/null || {  screen -r -S 'wsproxy' -X quit;  screen -dmS wsproxy python /etc/CrashVPN/wsproxy.py 80; }" >>/etc/autostart;
   #echo -e "netstat -tlpn | grep -w 80 > /dev/null || screen -dmS wsproxy antcrashws.sh 80" >>/etc/autostart;
   #netstat -tlpn | grep -w 80 > /dev/null || {  screen -r -S 'wspy' -X quit;  screen -dmS wspy python /etc/CrashVPN/wsproxy.py 80; };
-fi
+#fi
 
