@@ -2,11 +2,4 @@
 clear
 #INICIO AUTOMATICO
 netstat -tlpn | grep -w 80 > /dev/null || screen -dmS wsproxy80 antcrashws.sh 80
-netstat -tlpn | grep -w 8080 > /dev/null || screen -dmS wsproxy8080 antcrashws.sh 8080
-netstat -tlpn | grep -w 8880 > /dev/null || screen -dmS wsproxy8088 antcrashws.sh 8880
-netstat -tlpn | grep -w 2052 > /dev/null || screen -dmS wsproxy2052 antcrashws.sh 2052
-netstat -tlpn | grep -w 2082 > /dev/null || screen -dmS wsproxy2082 antcrashws.sh 2082
-netstat -tlpn | grep -w 2086 > /dev/null || screen -dmS wsproxy2086 antcrashws.sh 2086
-netstat -tlpn | grep -w 2095 > /dev/null || screen -dmS wsproxy2095 antcrashws.sh 2095
-netstat -tlpn | grep -w 8088 > /dev/null || screen -dmS socks_squid antcrashsockssquid.sh 8088
-#ps x | grep 'udpvpn' | grep -v 'grep' || screen -dmS udpvpn antcrashudp.sh
+
